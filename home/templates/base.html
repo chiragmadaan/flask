@@ -13,85 +13,11 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		<a class="navbar-brand" href="{{ url_for('home_page') }}">Welcome</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav me-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="{{ url_for('home_page') }}">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Market</a>
-				</li>
-			</ul>
-
-      {% if current_user.is_authenticated %}
-
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link">Welcome, {{ current_user.firstname }}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout_page') }}">Logout</a>
-        </li>
-      </ul>
-
-      {% else %}
-
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('registration_page') }}">Register</a>
-				</li>
-			</ul>
-
-
-      {% endif %}
-		</div>
-	</nav>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+  <!-- {% include "modules/nav1.html" %} -->
+	<!-- {% include "modules/nav2.html" %} -->
+  {% include "modules/nav3.html" %}
     <h1>{% block heading %}{% endblock %}</h1>
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
          {% for category, message in messages %}
             <div class="alert alert-{{ category }}">
@@ -102,13 +28,91 @@
             </div>
          {% endfor %}
       {% endif %}
-    {% endwith %}
+    {% endwith %} -->
     {% block content %}{% endblock %}
+
+    <div class="toast-container" id="toasts" style="position: absolute; bottom: 20px; left: 20px;">
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
+        <div class="toast-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </svg>
+          <!-- <img src="..." class="rounded me-2" alt="..."> -->
+          <strong class="me-auto" id="toastHeader" style="margin-left: 10px;">Bootstrap</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+          </button>
+        </div>
+        <div class="toast-body" id="toastBody">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- <button type="button" class="btn btn-primary" id="liveToastBtn" onclick="Toasty()">Show live toast</button>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="✅">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    </div> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      var option = {
+        animation : true,
+        delay : 3000
+      }
+
+      function ShowToast(p1 = "No heading", p2 = "No body"){
+        document.getElementById("toastHeader").innerHTML = p1;
+        document.getElementById("toastBody").innerHTML = p2;
+        var toastHTMLElement = document.getElementById("toast");
+        var toastElement = new bootstrap.Toast( toastHTMLElement, option );
+        toastElement.show();
+        var toasts = document.getElementById("toasts");
+        // var toast = document.getElementById("toast");
+        var toast = toasts.firstElementChild;
+        toasts.innerHTML = toast.outerHTML + toast.outerHTML + toast.outerHTML + toast.outerHTML;
+        // toasts.appendChild(toast);
+        // toasts.appendChild(toast);
+        // toasts.appendChild(toast);
+        // toasts.append(toast.firstChild);
+        // toasts.append(toast.firstElementChild);
+        // toasts.appendChild(toast);
+        console.log("toast");
+        console.log(toast);
+        console.log("toast container");
+        // console.log(toasts);
+        console.log(document.getElementById("toasts"));
+        console.log("toast container inner html");
+        console.log(toasts.innerHTML);
+      }
+      // ShowToast("Chirag's", "Message")
+    </script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+         {% for category, message in messages %}
+          <script type="text/javascript">ShowToast("Chirag says:", "{{ message }}")</script>
+         {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- <script type="text/javascript">ShowToast("Chirag's", "Message")</script> -->
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
@@ -116,11 +120,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     -->
 
+    <script src="{{ url_for('static', filename='base.js') }}" charset="utf-8"></script>
   </body>
-  <!-- <style type="text/css">
+  <style type="text/css">
   	body{
   		background-color: #212121;
   		color: white
   	}
-  </style> -->
+  </style>
 </html>

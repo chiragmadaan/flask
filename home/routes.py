@@ -48,3 +48,10 @@ def logout_page():
     flash('You have been logged out', category='info')
     return redirect(url_for('home_page'))
 
+# @app.route("/<name>")
+# def random_page(name="poo"):
+#     return f'Hi, {name}'
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
