@@ -5,71 +5,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&family=Source+Sans+Pro:wght@400;900&display=swap" rel="stylesheet">
 
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-  <!-- {% include "modules/nav1.html" %} -->
-	<!-- {% include "modules/nav2.html" %} -->
-  {% include "modules/nav3.html" %}
+    <header>
+    {% include "modules/nav3.html" %}
+    </header>
+    {% include "modules/loginModal.html" %}
+    {% include "modules/notifications.html" %}
     <h1>{% block heading %}{% endblock %}</h1>
-    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-         {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{ message }}
-            </div>
-         {% endfor %}
-      {% endif %}
-    {% endwith %} -->
+
     {% block content %}{% endblock %}
-
-    <div class="toast-container" id="toasts" style="position: absolute; bottom: 20px; left: 20px;">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
-        <div class="toast-header">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-          </svg>
-          <!-- <img src="..." class="rounded me-2" alt="..."> -->
-          <strong class="me-auto" id="toastHeader" style="margin-left: 10px;">Bootstrap</strong>
-          <small>Just now</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-          </button>
-        </div>
-        <div class="toast-body" id="toastBody">
-          Hello, world! This is a toast message.
-        </div>
-      </div>
-      
-    </div>
-
-    <!-- <button type="button" class="btn btn-primary" id="liveToastBtn" onclick="Toasty()">Show live toast</button>
-
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
-      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <img src="..." class="rounded me-2" alt="✅">
-          <strong class="me-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-          Hello, world! This is a toast message.
-        </div>
-      </div>
-    </div> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript">
       var option = {
@@ -83,36 +43,49 @@
         var toastHTMLElement = document.getElementById("toast");
         var toastElement = new bootstrap.Toast( toastHTMLElement, option );
         toastElement.show();
-        var toasts = document.getElementById("toasts");
-        // var toast = document.getElementById("toast");
-        var toast = toasts.firstElementChild;
-        toasts.innerHTML = toast.outerHTML + toast.outerHTML + toast.outerHTML + toast.outerHTML;
-        // toasts.appendChild(toast);
-        // toasts.appendChild(toast);
-        // toasts.appendChild(toast);
-        // toasts.append(toast.firstChild);
-        // toasts.append(toast.firstElementChild);
-        // toasts.appendChild(toast);
-        console.log("toast");
-        console.log(toast);
-        console.log("toast container");
-        // console.log(toasts);
-        console.log(document.getElementById("toasts"));
-        console.log("toast container inner html");
-        console.log(toasts.innerHTML);
       }
-      // ShowToast("Chirag's", "Message")
+
+      function ClearToasts(){
+        var toast = document.getElementById("toast");
+        var toasts = document.getElementById("toasts");
+        toasts.innerHTML = toast.outerHTML;
+      }
+
+      function GenerateToast(p1 = "No heading", p2 = "No body"){
+      console.log(`showing ${p2}`)
+        document.getElementById("toastHeader").innerHTML = p1;
+        document.getElementById("toastBody").innerHTML = p2;
+        var toast = document.getElementById("toast");
+        var toasts = document.getElementById("toasts");
+        toasts.innerHTML = toasts.innerHTML + toast.outerHTML;
+<!--        var toastElList = document.querySelectorAll('.toast')-->
+<!--        new bootstrap.Toast(toastElList[toastElList.length-1], option).show()-->
+      }
+
+      function ShowAllToasts(){
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        toastElList[0].remove()
+        toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+          return new bootstrap.Toast(toastEl, option)
+        })
+        toastList.forEach((el) => el.show());
+
+      }
     </script>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-         {% for category, message in messages %}
-          <script type="text/javascript">ShowToast("Chirag says:", "{{ message }}")</script>
-         {% endfor %}
+        <script type="text/javascript">ClearToasts()</script>
+        {% for category, message in messages %}
+<!--          <script type="text/javascript">ShowToast("Chirag says:", "{{ message }}")</script>-->
+          <script type="text/javascript">GenerateToast("Chirag says:", "{{ message }}")</script>
+        {% endfor %}
+          <script type="text/javascript">ShowAllToasts()</script>
       {% endif %}
     {% endwith %}
 
-    <!-- <script type="text/javascript">ShowToast("Chirag's", "Message")</script> -->
+    {% include "modules/footer.html" %}
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
@@ -120,12 +93,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     -->
 
-    <script src="{{ url_for('static', filename='base.js') }}" charset="utf-8"></script>
+    <script src="{{ url_for('static', filename='js/base.js') }}" charset="utf-8"></script>
+
+    <script>
+      $('#data').click(function(){
+        $.ajax({
+          type: 'GET',
+          url: '{{ url_for('get_data') }}',
+          success: function(response) {
+<!--            ClearToasts()-->
+            GenerateToast("Chirag says:", response);
+            ShowAllToasts();
+          }
+        });
+      })
+
+      $(document).click(function (event) {
+        var clickover = $(event.target);
+        var _open = $("#navbarSupportedContent").hasClass("show");
+        if (_open === true && !clickover.hasClass("navbar-toggler")) {
+            $("button.navbar-toggler").click();
+        }
+    });
+
+
+    </script>
   </body>
-  <style type="text/css">
-  	body{
-  		background-color: #212121;
-  		color: white
-  	}
-  </style>
 </html>

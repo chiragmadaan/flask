@@ -1,16 +1,45 @@
 {% extends 'base.html' %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center " style="color:white">
 
-	<img class="mb-4" src="{{ url_for('static', filename='logo.png') }}" alt="" width="250" height="250">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 font-weight-normal">Welcome to hell</h1>
-            <p class="lead font-weight-normal">Start purchasing products by clicking the link below</p>
-            <a class="btn btn-primary" href="{{ url_for('login_page') }}">Get Started</a>
-            <button type="button" class="btn btn-primary" id="liveToastBtn" onclick="ShowToast()">Show live toast</button>
+<section class="intro">
+    <h1 class="section__title section__title--intro">
+        Hi, I am <strong>Chirag Madaan</strong>
+    </h1>
+    <p class="section__subtitle section__subtitle--intro">software engineer</p>
+    <img src="{{ url_for('static', filename='img/chirag1.jpg') }}" alt="a picture of Chirag" class="intro__img">
+</section>
+
+<section class="my-services">
+    <h2 class="section__title section__title--my-services">
+        What I do
+    </h2>
+    <div class="services">
+        <div class="service">
+            <h3>Testing Automation</h3>
+            <p>Having worked at the likes of Adobe, Saavn, Qantas, and Cochlear, I have amased an experience of 10 years in the field of automated testing. Worked with Selenium for web automation and Appium for mobile automation. I have also automated API testing using rest assured.</p>
         </div>
-        <div class="product-device box-shadow d-none d-md-block"></div>
-        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+        <div class="service">
+            <h3>Python Developer</h3>
+            <p>I have been working in Python for years. Most of my automation frameworks were built in Python. This beautiful website's backend was developed in Flask, which is a python based web-development framework, very similar to Django. Currently learning Machine Learning and Algorithmic Trading using Python. Python is &#10084;&#65039;.</p>
+        </div>
+        <div class="service">
+            <h3>Side Hustles & Interests</h3>
+            <p>Besides work, I hold keen interests in stock trading and investing, electric vehicles, and blockchain+Cryptocurrencies. Favourite book series is <a href="https://awoiaf.westeros.org/index.php/A_Song_of_Ice_and_Fire" style="color: inherit;">A Song of Ice and Fire</a>. Favourite cuisine is Indian.</p>
+        </div>
     </div>
+</section>
+
+<section class="description">
+    <h2 class="section__title section__title--description">
+        Who I am
+    </h2>
+    <p class="section__subtitle section__subtitle--description">automation engineer based out of Sydney</p>
+    <div class="description__body">
+        <p>Graduated from Thapar University, India with a bachelor degree in Computer Science. Worked in India for 8+ years as a software engineer. Moved to Australia in January 2020 and have been working in Sydney ever since.</p>
+
+    </div>
+    <img src="{{ url_for('static', filename='img/chirag2.jpg') }}" alt="another picture of Chirag" class="description__img">
+</section>
+
 {% endblock %}

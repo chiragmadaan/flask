@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/test.css') }}" rel="stylesheet">
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+
+      <div class="frame"><img class="section-bg" src="{{ url_for('static', filename='img/1.jpg') }}" alt=""></div>
+      <div class="frame"><img class="section-bg" src="{{ url_for('static', filename='img/2.jpg') }}" alt=""></div>
+      <div class="frame"><img class="section-bg" src="{{ url_for('static', filename='img/3.jpg') }}" alt=""></div>
+      <div class="frame"><img class="section-bg" src="{{ url_for('static', filename='img/4.jpg') }}" alt=""></div>
+      <div class="frame"><img class="section-bg" src="{{ url_for('static', filename='img/5.jpg') }}" alt=""></div>
+      
+  </body>
+  <style type="text/css">
+
+  </style>
+</html>

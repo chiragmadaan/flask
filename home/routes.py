@@ -1,13 +1,15 @@
 from home import app, db
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, jsonify, g
 from home.models import Users
 from home.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user
 # from flask_login import login_required
 
+
 @app.route("/")
 def home_page():
     return render_template('home.html')
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def registration_page():
@@ -42,15 +44,28 @@ def login_page():
             flash('Incorrect email ID or password. Please try again.', category='danger')
     return render_template('login.html', form=form)
 
+
 @app.route("/logout")
 def logout_page():
     logout_user()
     flash('You have been logged out', category='info')
     return redirect(url_for('home_page'))
 
+
 # @app.route("/<name>")
 # def random_page(name="poo"):
 #     return f'Hi, {name}'
+
+
+@app.route("/data")
+def get_data():
+    return 'Hi from data'
+
+
+@app.route("/test")
+def test():
+    return render_template('test.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):

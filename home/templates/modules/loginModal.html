@@ -1,0 +1,78 @@
+<div class="account-panel">
+  <div class="modal fade" tabindex="-1" id="login-modal">
+     <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+           <div class="modal-header border-bottom-0">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+              <form method="POST" class="form-signin" id="login-form">
+                 <!--           {# {{ form.hidden_tag() }} -->
+                 <!--            {{ form.email.label() }}-->
+                 <!--            {{ form.email(class="form-control", placeholder="Enter your email address") }}-->
+                 <!--            {{ form.password.label() }}-->
+                 <!--            {{ form.password(class="form-control", placeholder="Enter password") }} #}-->
+                 <h4 class="h3 mb-3 fw-normal text-center form-title">Please Log In</h4>
+                 <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                 </div>
+                 <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                 </div>
+                 <button class="w-100 btn btn-lg btn-primary submit-button" type="submit">Sign in</button>
+                 <br>
+                 <!--           {# {{ form.submit(class="btn btn-primary") }} #}-->
+              </form>
+           </div>
+           <div class="modal-footer d-flex justify-content-center">
+              <div class="checkbox mb-3">
+                 Do not have an account?
+                 <a class="btn btn-sm btn-secondary" data-bs-target="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Create Account</a>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="modal fade" tabindex="-1" id="signup-modal">
+     <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+           <div class="modal-header border-bottom-0">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+              <form method="POST" class="form-signup" id="signup-form">
+                 <!--           {# {{ form.hidden_tag() }} -->
+                 <!--            {{ form.email.label() }}-->
+                 <!--            {{ form.email(class="form-control", placeholder="Enter your email address") }}-->
+                 <!--            {{ form.password.label() }}-->
+                 <!--            {{ form.password(class="form-control", placeholder="Enter password") }} #}-->
+                 <h4 class="h3 mb-3 fw-normal text-center form-title">Please Sign Up</h4>
+                 <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com">
+                    <label for="floatingInput2">Email address</label>
+                 </div>
+                 <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password">
+                    <label for="floatingPassword2">Password</label>
+                 </div>
+                 <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingConfirmPassword2" placeholder="Re-enter Password">
+                    <label for="floatingConfirmPassword2">Confirm Password</label>
+                 </div>
+                 <button class="w-100 btn btn-lg btn-primary submit-button" type="submit">Sign up</button>
+                 <br>
+                    <!--           {# {{ form.submit(class="btn btn-primary") }} #}-->
+              </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+               <div class="checkbox mb-3">
+                  Already have an account?
+                  <a class="btn btn-sm btn-secondary" data-bs-target="#login-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Log In</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

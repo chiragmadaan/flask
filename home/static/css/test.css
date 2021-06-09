@@ -1,0 +1,25 @@
+body
+{
+    background-color: #212121;
+    color: white
+}
+
+html {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.frame {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: clip;
+}
+
+.section-bg {
+    scroll-snap-align: start;
+    width: 100vw;
+}
+
+img {
+    pointer-events: none;
+}
