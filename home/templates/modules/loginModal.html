@@ -7,6 +7,7 @@
            </div>
            <div class="modal-body">
               <form method="POST" class="form-signin" id="login-form">
+                 {{ login_form.hidden_tag() }}
                  <!--           {# {{ form.hidden_tag() }} -->
                  <!--            {{ form.email.label() }}-->
                  <!--            {{ form.email(class="form-control", placeholder="Enter your email address") }}-->
@@ -14,16 +15,19 @@
                  <!--            {{ form.password(class="form-control", placeholder="Enter password") }} #}-->
                  <h4 class="h3 mb-3 fw-normal text-center form-title">Please Log In</h4>
                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+<!--                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">-->
+<!--                    <label for="floatingInput">Email Address</label>-->
+                    {{ login_form.email(class="form-control", placeholder="name@example.com") }}
+                    {{ login_form.email.label() }}
                  </div>
                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+<!--                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">-->
+<!--                    <label for="floatingPassword">Password</label>-->
+                    {{ login_form.password(class="form-control", placeholder="Enter Password") }}
+                    {{ login_form.password.label() }}
                  </div>
-                 <button class="w-100 btn btn-lg btn-primary submit-button" type="submit">Sign in</button>
+                 {{ login_form.submit(class="w-100 btn btn-lg btn-primary submit-button") }}
                  <br>
-                 <!--           {# {{ form.submit(class="btn btn-primary") }} #}-->
               </form>
            </div>
            <div class="modal-footer d-flex justify-content-center">
@@ -43,6 +47,7 @@
            </div>
            <div class="modal-body">
               <form method="POST" class="form-signup" id="signup-form">
+                 {{ registration_form.hidden_tag() }}
                  <!--           {# {{ form.hidden_tag() }} -->
                  <!--            {{ form.email.label() }}-->
                  <!--            {{ form.email(class="form-control", placeholder="Enter your email address") }}-->
@@ -50,20 +55,25 @@
                  <!--            {{ form.password(class="form-control", placeholder="Enter password") }} #}-->
                  <h4 class="h3 mb-3 fw-normal text-center form-title">Please Sign Up</h4>
                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com">
-                    <label for="floatingInput2">Email address</label>
+<!--                    <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com">-->
+<!--                    <label for="floatingInput2">Email address</label>-->
+                    {{ registration_form.email(class="form-control", placeholder="name@example.com") }}
+                    {{ registration_form.email.label() }}
                  </div>
                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password">
-                    <label for="floatingPassword2">Password</label>
+<!--                    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password">-->
+<!--                    <label for="floatingPassword2">Password</label>-->
+                    {{ registration_form.password1(class="form-control", placeholder="Enter Password") }}
+                    {{ registration_form.password1.label() }}
                  </div>
                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingConfirmPassword2" placeholder="Re-enter Password">
-                    <label for="floatingConfirmPassword2">Confirm Password</label>
+<!--                    <input type="password" class="form-control" id="floatingConfirmPassword2" placeholder="Re-enter Password">-->
+<!--                    <label for="floatingConfirmPassword2">Confirm Password</label>-->
+                    {{ registration_form.password2(class="form-control", placeholder="Re-enter Password") }}
+                    {{ registration_form.password2.label() }}
                  </div>
-                 <button class="w-100 btn btn-lg btn-primary submit-button" type="submit">Sign up</button>
+                 {{ registration_form.submit(class="w-100 btn btn-lg btn-primary submit-button") }}
                  <br>
-                    <!--           {# {{ form.submit(class="btn btn-primary") }} #}-->
               </form>
             </div>
             <div class="modal-footer d-flex justify-content-center">

@@ -2,13 +2,29 @@ from home import app, db
 from flask import render_template, redirect, url_for, flash, jsonify, g
 from home.models import Users
 from home.forms import RegistrationForm, LoginForm
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 # from flask_login import login_required
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home_page():
-    return render_template('home.html')
+    # if current_user.is_authenticated:
+    #     return render_template('home.html')
+    # else:
+    registration_form = RegistrationForm()
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        print("Validating login form")
+        user = Users.query.filter_by(email=login_form.email.data).first()
+        if user and user.verify_password(login_form.password.data):
+            login_user(user)
+            flash(f'Success! You\'re logged in as: {user.firstname} {user.lastname}', category='success')
+            return redirect(url_for('home_page'))
+        else:
+            flash('Incorrect email ID or password. Please try again.', category='danger')
+    if registration_form.validate_on_submit():
+        print("validating registration form")
+    return render_template('home.html', login_form=login_form, registration_form=registration_form)
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -34,6 +50,7 @@ def registration_page():
 @app.route("/login", methods=['GET', 'POST'])
 def login_page():
     form = LoginForm()
+    registration_form = RegistrationForm()
     if form.validate_on_submit():
         user = Users.query.filter_by(email=form.email.data).first()
         if user and user.verify_password(form.password.data):
@@ -42,7 +59,7 @@ def login_page():
             return redirect(url_for('home_page'))
         else:
             flash('Incorrect email ID or password. Please try again.', category='danger')
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, login_form=form, registration_form=registration_form)
 
 
 @app.route("/logout")

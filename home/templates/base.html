@@ -19,7 +19,9 @@
     <header>
     {% include "modules/nav3.html" %}
     </header>
-    {% include "modules/loginModal.html" %}
+    {% if not current_user.is_authenticated %}
+      {% include "modules/loginModal.html" %}
+    {% endif %}
     {% include "modules/notifications.html" %}
     <h1>{% block heading %}{% endblock %}</h1>
 
