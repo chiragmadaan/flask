@@ -4,7 +4,28 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!--    <meta name="description" content="Listen to Yaad Na Aana song by Yash Narvekar, AKASA now on JioSaavn. Download Hindi songs or listen online free, only on JioSaavn."/>-->
+<!--<meta name="keywords" content="album,Yaad Na Aana,Yaad Na Aana,latest songs, free bollywood songs, hindi songs, tamil songs, bollywood online"/>-->
+<!--    <meta property="al:android:app_name" content="Facebook" />-->
+<!--    <meta property="al:android:package" content="com.facebook.katana" />-->
+<!--    <meta property="al:android:url" content="fb://profile/100000922374848" />-->
+<!--    <meta property="al:ios:app_name" content="Facebook" />-->
+<!--    <meta property="al:ios:app_store_id" content="284882215" />-->
+<!--    <meta property="al:ios:url" content="fb://profile/100000922374848" />-->
+<!--    <meta name="app-itunes-app" content="app-id=284882215, app-argument=fb://profile/100000922374848" />-->
+<!--    <link rel="canonical" href="https://www.facebook.com/chiragm.3315" />-->
+<!--    <meta name="description" content="Chirag Madaan is on Facebook. Join Facebook to connect with Chirag Madaan and others you may know. Facebook gives people the power to share and makes the..." />-->
+<!--    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.facebook.com/chiragm.3315" />-->
+<!--    <link rel="alternate" media="handheld" href="https://m.facebook.com/chiragm.3315" />-->
+<!--    <meta property="og:title" content="Chirag Madaan" />-->
+<!--    <meta property="og:description" content="Chirag Madaan is on Facebook. Join Facebook to connect with Chirag Madaan and others you may know. Facebook gives people the power to share and makes the world more open and connected." />-->
+<!--    <meta property="og:url" content="https://www.facebook.com/chiragm.3315" />-->
+<!--    <meta property="og:locale" content="en_US" />-->
+<!--    <meta name="robots" content="noodp,noydir,noimageindex" />-->
+<!--    <link rel="canonical" href="https://www.facebook.com/chiragm.3315" />-->
+<!--    <meta name="twitter:card" content="summary" />-->
+<!--    <meta name="twitter:title" content="Chirag Madaan" />-->
+<!--    <meta name="twitter:description" content="Chirag Madaan is on Facebook. Join Facebook to connect with Chirag Madaan and others you may know. Facebook gives people the power to share and makes the world more open and connected." />-->
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
     <!-- Bootstrap CSS -->
@@ -32,60 +53,11 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script type="text/javascript" src="/static/js/sijax/sijax.js"></script>
     <script type="text/javascript">
-      var option = {
-        animation : true,
-        delay : 3000
-      }
-
-      function ShowToast(p1 = "No heading", p2 = "No body"){
-        document.getElementById("toastHeader").innerHTML = p1;
-        document.getElementById("toastBody").innerHTML = p2;
-        var toastHTMLElement = document.getElementById("toast");
-        var toastElement = new bootstrap.Toast( toastHTMLElement, option );
-        toastElement.show();
-      }
-
-      function ClearToasts(){
-        var toast = document.getElementById("toast");
-        var toasts = document.getElementById("toasts");
-        toasts.innerHTML = toast.outerHTML;
-      }
-
-      function GenerateToast(p1 = "No heading", p2 = "No body"){
-      console.log(`showing ${p2}`)
-        document.getElementById("toastHeader").innerHTML = p1;
-        document.getElementById("toastBody").innerHTML = p2;
-        var toast = document.getElementById("toast");
-        var toasts = document.getElementById("toasts");
-        toasts.innerHTML = toasts.innerHTML + toast.outerHTML;
-<!--        var toastElList = document.querySelectorAll('.toast')-->
-<!--        new bootstrap.Toast(toastElList[toastElList.length-1], option).show()-->
-      }
-
-      function ShowAllToasts(){
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        toastElList[0].remove()
-        toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        var toastList = toastElList.map(function (toastEl) {
-          return new bootstrap.Toast(toastEl, option)
-        })
-        toastList.forEach((el) => el.show());
-
-      }
+        {{ g.sijax.get_js()|safe }}
     </script>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <script type="text/javascript">ClearToasts()</script>
-        {% for category, message in messages %}
-<!--          <script type="text/javascript">ShowToast("Chirag says:", "{{ message }}")</script>-->
-          <script type="text/javascript">GenerateToast("Chirag says:", "{{ message }}")</script>
-        {% endfor %}
-          <script type="text/javascript">ShowAllToasts()</script>
-      {% endif %}
-    {% endwith %}
 
     {% include "modules/footer.html" %}
 
@@ -98,18 +70,6 @@
     <script src="{{ url_for('static', filename='js/base.js') }}" charset="utf-8"></script>
 
     <script>
-      $('#data').click(function(){
-        $.ajax({
-          type: 'GET',
-          url: '{{ url_for('get_data') }}',
-          success: function(response) {
-<!--            ClearToasts()-->
-            GenerateToast("Chirag says:", response);
-            ShowAllToasts();
-          }
-        });
-      })
-
       $(document).click(function (event) {
         var clickover = $(event.target);
         var _open = $("#navbarSupportedContent").hasClass("show");
@@ -118,7 +78,38 @@
         }
     });
 
+$("#login-form").on("submit", function(event){
+        console.log("login form submitted 1");
+        event.preventDefault();
 
+        var formValues= $(this).serialize();
+        console.log(formValues);
+        $.ajax({
+          type: 'POST',
+          url: '{{ url_for('ajax_login') }}',
+          data : formValues,
+          success: function(response) {
+            $('#login-modal').modal('hide');
+            GenerateToast("Chirag says:", response.message);
+            ShowAllToasts();
+            console.log("Success function");
+            console.log(response);
+          },
+      error: function (xhr, ajaxOptions, thrownError) {
+        console.log(xhr.status);
+        console.log(thrownError);
+        if (xhr.status === 401) {
+          GenerateToast("Chirag says:", "Incorrect email ID or password. Please try again.");
+          ShowAllToasts();
+          $('#login-form')[0].reset();
+        } else if (xhr.status === 444) {
+          console.log("Handle form error");
+        } else {
+          console.log("Unknown error: " + xhr.status);
+        }
+      }
+        });
+    });
     </script>
   </body>
 </html>

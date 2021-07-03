@@ -8,25 +8,17 @@
            <div class="modal-body">
               <form method="POST" class="form-signin" id="login-form">
                  {{ login_form.hidden_tag() }}
-                 <!--           {# {{ form.hidden_tag() }} -->
-                 <!--            {{ form.email.label() }}-->
-                 <!--            {{ form.email(class="form-control", placeholder="Enter your email address") }}-->
-                 <!--            {{ form.password.label() }}-->
-                 <!--            {{ form.password(class="form-control", placeholder="Enter password") }} #}-->
                  <h4 class="h3 mb-3 fw-normal text-center form-title">Please Log In</h4>
                  <div class="form-floating">
-<!--                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">-->
-<!--                    <label for="floatingInput">Email Address</label>-->
                     {{ login_form.email(class="form-control", placeholder="name@example.com") }}
                     {{ login_form.email.label() }}
                  </div>
                  <div class="form-floating">
-<!--                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">-->
-<!--                    <label for="floatingPassword">Password</label>-->
                     {{ login_form.password(class="form-control", placeholder="Enter Password") }}
                     {{ login_form.password.label() }}
                  </div>
                  {{ login_form.submit(class="w-100 btn btn-lg btn-primary submit-button") }}
+<!--                  <a class="nav-link active" href="javascript://" onclick="Sijax.request('sijax-login', [$('#email').val(), $('#password').val()]);">Login with Sijax</a>-->
                  <br>
               </form>
            </div>
@@ -73,6 +65,7 @@
                     {{ registration_form.password2.label() }}
                  </div>
                  {{ registration_form.submit(class="w-100 btn btn-lg btn-primary submit-button") }}
+<!--                  <a class="nav-link active" href="javascript://" onclick="Sijax.request('sijax-register', [$('#registration_email').val(), $('#registration_password').val()]);">Register with Sijax</a>-->
                  <br>
               </form>
             </div>

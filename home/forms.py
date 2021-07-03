@@ -8,8 +8,8 @@ class RegistrationForm(FlaskForm):
 	firstname = StringField(label='First Name', id="firstname", validators=[Length(min=2, max=15), DataRequired()])
 	lastname = StringField(label='Last Name', id="lastname", validators=[Length(min=0, max=15)])
 	phone_number = StringField(label='Contact Number', id="phone_number", validators=[Length(max=10)])
-	email = StringField(label='Email Address', id="email", validators=[Email(), DataRequired()])
-	password1 = PasswordField(label='Password', id="password", validators=[Length(min=6), DataRequired()])
+	email = StringField(label='Email Address', id="registration_email", validators=[Email(), DataRequired()])
+	password1 = PasswordField(label='Password', id="registration_password", validators=[Length(min=6), DataRequired()])
 	password2 = PasswordField(label='Confirm Password', id="confirm_password", validators=[EqualTo('password1'), DataRequired()])
 	submit = SubmitField(label='Create Account', id="submit")
 
