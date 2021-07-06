@@ -7,7 +7,8 @@
            </div>
            <div class="modal-body">
               <form method="POST" class="form-signin" id="login-form">
-                 {{ login_form.hidden_tag() }}
+                 {# {{ login_form.hidden_tag() }} #}
+                 {{ login_form.csrf_token(id='login-csrf') }}
                  <h4 class="h3 mb-3 fw-normal text-center form-title">Please Log In</h4>
                  <div class="form-floating">
                     {{ login_form.email(class="form-control", placeholder="name@example.com") }}
@@ -39,28 +40,18 @@
            </div>
            <div class="modal-body">
               <form method="POST" class="form-signup" id="signup-form">
-                 {{ registration_form.hidden_tag() }}
-                 <!--           {# {{ form.hidden_tag() }} -->
-                 <!--            {{ form.email.label() }}-->
-                 <!--            {{ form.email(class="form-control", placeholder="Enter your email address") }}-->
-                 <!--            {{ form.password.label() }}-->
-                 <!--            {{ form.password(class="form-control", placeholder="Enter password") }} #}-->
+                 {# {{ registration_form.hidden_tag() }} #}
+                 {{ registration_form.csrf_token(id='reg-csrf') }}
                  <h4 class="h3 mb-3 fw-normal text-center form-title">Please Sign Up</h4>
                  <div class="form-floating">
-<!--                    <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com">-->
-<!--                    <label for="floatingInput2">Email address</label>-->
                     {{ registration_form.email(class="form-control", placeholder="name@example.com") }}
                     {{ registration_form.email.label() }}
                  </div>
                  <div class="form-floating">
-<!--                    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password">-->
-<!--                    <label for="floatingPassword2">Password</label>-->
                     {{ registration_form.password1(class="form-control", placeholder="Enter Password") }}
                     {{ registration_form.password1.label() }}
                  </div>
                  <div class="form-floating">
-<!--                    <input type="password" class="form-control" id="floatingConfirmPassword2" placeholder="Re-enter Password">-->
-<!--                    <label for="floatingConfirmPassword2">Confirm Password</label>-->
                     {{ registration_form.password2(class="form-control", placeholder="Re-enter Password") }}
                     {{ registration_form.password2.label() }}
                  </div>
