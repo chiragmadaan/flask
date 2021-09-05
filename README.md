@@ -9,6 +9,7 @@ pip install flask-login
 pip install flask-bcrypt  
 pip install email_validator  
 pip install flask-wtf  
+pip install Pillow to resize images  
 ~~export FLASK_APP=filename.py~~  
 ~~export FLASK_DEBUG=1~~  
 OR pip install -r requirements.txt  

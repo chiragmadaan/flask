@@ -1,5 +1,6 @@
 from home import app, db
 from flask import render_template, redirect, url_for, flash, jsonify, g, request, make_response
+# from flask_wtf.file import FileField, FileAllowed
 from home.models import Users
 from home.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, current_user
@@ -185,6 +186,11 @@ def ajax_signup():
 @app.route("/test")
 def test():
     return render_template('test.html')
+
+
+@app.route("/loconav")
+def loconav():
+    return render_template('loconav.html')
 #
 #
 # @flask_sijax.route(app, '/flask-login')

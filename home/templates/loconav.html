@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Loconav</title>
+</head>
+<body>
+<button id="all_devices">All devices API call!</button>
+<button id="device_details">Device details API call!</button>
+<hr>
+<div id="api_response"></div>
+<script type="text/javascript">
+	var all_devices_button = document.getElementById('all_devices');
+	var device_details_button = document.getElementById('device_details');
+	var response_section = document.getElementById('api_response');
+	const body = {
+		headers: {
+			'Authorization': 'fKdUfgdFheWZVW3syW16'
+		}
+	}
+	all_devices_button.addEventListener('click', (e) => {
+		response_section.innerHTML = "Calling the API, please wait";
+		fetch('https://loconav.com/api/v3/device/all_devices_with_count', body)
+  		.then(response => response.json())
+  		.then((data) => {
+  			response_section.innerHTML = "API Response: " + JSON.stringify(data);
+			response_section.innerHTML += "<br>";
+			response_section.append("Total vehicle count: " + data.count);
+			response_section.innerHTML += "<br>";
+			response_section.append("Coordinates: " + data.data[0].data.cordinate);
+			response_section.innerHTML += "<br>";
+			response_section.append("Motion status: " + data.data[0].data.motion_status);
+			response_section.innerHTML += "<br>";
+			response_section.append("Motion state: " + data.data[0].data.motion_state);
+			response_section.innerHTML += "<br>";
+			response_section.append("Speed: " + data.data[0].data.speed);
+			response_section.innerHTML += "<br>";
+			response_section.append("Orientation: " + data.data[0].data.orientation);
+			response_section.innerHTML += "<br>";
+  			last_received_at = data.data[0].data.last_received_at
+  			var d = new Date(0);
+			d.setUTCSeconds(last_received_at);
+			response_section.append("Last received at: " + d);
+  		});
+	});
+	device_details_button.addEventListener('click', (e) => {
+		response_section.innerHTML = "Calling the API, please wait";
+		fetch('https://loconav.com/api/v3/device/details?vehicle_number=HR20AR1711', body)
+  		.then(response => response.json())
+  		.then((data) => {
+  			response_section.innerHTML = JSON.stringify(data);
+			response_section.innerHTML += "<br>";
+			response_section.append("Coordinates: " + data.data.cordinate);
+			response_section.innerHTML += "<br>";
+			response_section.append("Motion status: " + data.data.motion_status);
+			response_section.innerHTML += "<br>";
+			response_section.append("Motion state: " + data.data.motion_state);
+			response_section.innerHTML += "<br>";
+			response_section.append("Speed: " + data.data.speed);
+			response_section.innerHTML += "<br>";
+			response_section.append("Orientation: " + data.data.orientation);
+			response_section.innerHTML += "<br>";
+  			last_received_at = data.data.last_received_at
+  			var d = new Date(0);
+			d.setUTCSeconds(last_received_at);
+			response_section.append("Last Received At: " + d);
+  		});
+	});
+	
+</script>
+</body>
+</html>
